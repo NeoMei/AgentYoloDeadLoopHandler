@@ -2,6 +2,7 @@
 
 [![License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
 [![Contributors](https://img.shields.io/badge/contributors-welcome-green.svg)](CONTRIBUTING.md)
+[![Release](https://img.shields.io/badge/release-v1.0.0-brightgreen.svg)](https://github.com/NeoMei/AgentYoloDeadLoopHandler/releases/tag/v1.0.0)
 
 🚀 **让 AI 开发更高效，更安全！**
 
@@ -25,6 +26,21 @@
 > ✅ 已完成 YOLO 模式和重复操作拦截配置
 
 ## 🚀 快速开始
+
+### 📥 直接下载
+
+如果你只想快速安装，可以直接下载脚本：
+
+```bash
+# 下载安装脚本
+curl -o setup-yolo-mode.sh https://raw.githubusercontent.com/NeoMei/AgentYoloDeadLoopHandler/main/setup-yolo-mode.sh
+
+# 添加执行权限
+chmod +x setup-yolo-mode.sh
+
+# 运行安装
+./setup-yolo-mode.sh --global
+```
 
 ### 一键安装脚本 ⚡
 
@@ -317,6 +333,14 @@ npm run dev             # 启动开发服务器
 npm run build          # 构建生产版本
 npm test              # 运行测试
 ```
+
+## 📋 版本信息
+
+当前版本：**v1.0.0** 🎉
+
+查看详细发布说明：[v1.0.0 Release Notes](https://github.com/NeoMei/AgentYoloDeadLoopHandler/releases/tag/v1.0.0)
+
+更新日志：[CHANGELOG.md](CHANGELOG.md)
 
 ## 📂 项目结构
 
