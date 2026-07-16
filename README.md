@@ -22,7 +22,7 @@
 > ✅ 已完成配置和验证（含一键脚本）
 
 ### Codex
-> 🚧 配置文档待补充
+> ✅ 已完成 YOLO 模式和重复操作拦截配置
 
 ## 📖 使用指南
 
@@ -125,6 +125,43 @@ nano ~/.claude/settings.json
 
 参见 `configurations/opencode/` 目录下的 `yolo-mode.json` 与 `setup-yolo.sh`。
 
+### Codex 配置
+
+Codex 配置位于 [`configurations/codex/`](configurations/codex/)，包含 YOLO 模式和重复操作拦截。
+
+#### 1. 一键安装
+
+```bash
+git clone https://github.com/NeoMei/AgentYoloDeadLoopHandler.git
+cd AgentYoloDeadLoopHandler
+configurations/codex/install_yolo.sh
+```
+
+安装完成后重启 Codex。
+
+#### 2. 安装内容
+
+- 启用 `approval_policy = "never"`
+- 启用 `sandbox_mode = "danger-full-access"`
+- 安装 `~/.codex/hooks/repeat_guard.rb`
+- 注册 `PreToolUse` 重复操作拦截 hook
+- 同一操作 60 秒内允许 3 次，第 4 次返回 `decision = "block"`
+- 重复运行安装脚本不会重复追加配置
+
+#### 3. 验证安装脚本
+
+```bash
+configurations/codex/test_install_yolo.sh
+```
+
+该测试会使用临时 `HOME`，验证一键安装、重复安装幂等性，以及 hook 不会被重复写入。
+
+#### 4. 安全提醒
+
+YOLO 模式会跳过人工审批并使用 `danger-full-access`。建议只在可信本地开发、容器、临时 worktree 或其他外部隔离环境中使用。不要提交真实的 `~/.codex/auth.json`、日志、状态库或包含私有路径的 `~/.codex/config.toml`。
+
+详细说明见 [`configurations/codex/README.md`](configurations/codex/README.md)。
+
 ## 🔧 安装和使用
 
 ### Claude Code
@@ -217,7 +254,12 @@ agentYoloDeadLoopHandler/
 │   │   ├── yolo-mode.json
 │   │   └── setup-yolo.sh
 │   └── codex/
-│       └── README.md (待补充)
+│       ├── README.md
+│       ├── repeat_guard.rb
+│       ├── install_yolo.sh
+│       ├── install_repeat_guard.rb
+│       ├── codex-config-snippet.toml
+│       └── test_install_yolo.sh
 └── examples/
     ├── basic-usage.md
     └── advanced-scenarios.md
@@ -276,7 +318,7 @@ git pull
 ### 待补充的内容
 
 - [x] OpenCode 配置文档
-- [ ] Codex 配置文档
+- [x] Codex 配置文档
 - [ ] 更多 AI 工具配置
 - [ ] 高级使用示例
 - [ ] 性能优化建议
