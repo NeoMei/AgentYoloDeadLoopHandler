@@ -1,0 +1,12 @@
+# Add this to ~/.codex/config.toml.
+# Do not commit your real ~/.codex/config.toml because it may contain private paths or local MCP settings.
+
+approval_policy = "never"
+sandbox_mode = "danger-full-access"
+
+[hooks]
+PreToolUse = [
+  { matcher = "always", hooks = [
+    { type = "command", command = "/usr/bin/ruby ~/.codex/hooks/repeat_guard.rb", async = false, timeout = 2, statusMessage = "Checking repeated Codex operation" }
+  ] }
+]

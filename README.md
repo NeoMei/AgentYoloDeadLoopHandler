@@ -22,7 +22,7 @@
 > 🚧 配置文档待补充
 
 ### Codex
-> 🚧 配置文档待补充
+> ✅ 已完成 YOLO 模式和重复操作拦截配置
 
 ## 📖 使用指南
 
@@ -81,6 +81,25 @@ nano ~/.claude/settings.json
 #### 4. 完整配置文件
 
 参见 `configurations/claude-code/` 目录下的完整配置文件。
+
+### Codex 配置
+
+Codex 配置位于 [`configurations/codex/`](configurations/codex/)。
+
+快速安装：
+
+```bash
+ruby configurations/codex/install_repeat_guard.rb
+```
+
+安装内容：
+
+- 启用 `approval_policy = "never"`
+- 启用 `sandbox_mode = "danger-full-access"`
+- 安装 `PreToolUse` 重复操作拦截 hook
+- 同一操作 60 秒内第 4 次重复时返回 `decision = "block"`
+
+详细说明见 [`configurations/codex/README.md`](configurations/codex/README.md)。
 
 ## 🔧 安装和使用
 
@@ -172,7 +191,10 @@ agentYoloDeadLoopHandler/
 │   ├── opencode/
 │   │   └── README.md (待补充)
 │   └── codex/
-│       └── README.md (待补充)
+│       ├── README.md
+│       ├── repeat_guard.rb
+│       ├── install_repeat_guard.rb
+│       └── codex-config-snippet.toml
 └── examples/
     ├── basic-usage.md
     └── advanced-scenarios.md
@@ -231,7 +253,7 @@ git pull
 ### 待补充的内容
 
 - [ ] OpenCode 配置文档
-- [ ] Codex 配置文档
+- [x] Codex 配置文档
 - [ ] 更多 AI 工具配置
 - [ ] 高级使用示例
 - [ ] 性能优化建议

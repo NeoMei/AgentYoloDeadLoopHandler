@@ -37,3 +37,14 @@ yarn-error.log
 test-config.json
 local-config.json
 personal-settings.json
+
+# AI agent local runtime state and secrets
+.codex/
+.claude/
+auth.json
+logs_*.sqlite*
+state_*.sqlite*
+goals_*.sqlite*
+memories_*.sqlite*
+sessions/
+hook-state/
