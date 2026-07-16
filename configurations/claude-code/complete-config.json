@@ -1,43 +1,17 @@
 {
-  "approvalMode": "auto",
   "permissions": {
-    "allowRead": true,
-    "allowWrite": true,
-    "allowBash": true,
-    "allowEdit": true,
-    "allowNetwork": true,
-    "allowMCP": true,
-    "allowAgent": true
-  },
-  "autoApprove": [
-    "Read",
-    "Write",
-    "Edit",
-    "Bash",
-    "LSP",
-    "AskUserQuestion",
-    "TaskCreate",
-    "TaskUpdate",
-    "Skill"
-  ],
-  "bashBehavior": "auto",
-  "networkBehavior": "auto",
-  "editBehavior": "auto",
-  "loopPrevention": {
-    "enabled": true,
-    "detectionWindow": 60,
-    "maxSameOperationCalls": 3,
-    "maxSimilarCalls": 5,
-    "cooldownPeriod": 10,
-    "blockOnPattern": [
-      "same.*operation.*3.*times",
-      "similar.*call.*5.*times"
-    ]
-  },
-  "repetitionDetection": {
-    "enabled": true,
-    "trackOperations": true,
-    "alertThreshold": 3,
-    "blockThreshold": 5
+    "defaultMode": "auto",
+    "allow": [
+      "Read",
+      "Write",
+      "Edit",
+      "Bash",
+      "LSP",
+      "AskUserQuestion",
+      "TaskCreate",
+      "TaskUpdate",
+      "Skill"
+    ],
+    "ask": []
   }
 }
