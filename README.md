@@ -18,8 +18,8 @@
 ### Claude Code
 > ✅ 已完成配置和验证
 
-### OpenCode  
-> 🚧 配置文档待补充
+### OpenCode
+> ✅ 已完成配置和验证（含一键脚本）
 
 ### Codex
 > 🚧 配置文档待补充
@@ -81,6 +81,49 @@ nano ~/.claude/settings.json
 #### 4. 完整配置文件
 
 参见 `configurations/claude-code/` 目录下的完整配置文件。
+
+### OpenCode 配置
+
+#### 1. 一键启用（推荐）
+
+```bash
+# 启用 YOLO 模式（全局配置）
+./configurations/opencode/setup-yolo.sh
+
+# 仅在当前项目启用
+./configurations/opencode/setup-yolo.sh -p
+
+# 查看状态 / 还原
+./configurations/opencode/setup-yolo.sh --status
+./configurations/opencode/setup-yolo.sh --revert
+```
+
+脚本会自动备份原配置并合并 YOLO 权限，**不触碰任何密钥**。
+
+#### 2. 核心配置
+
+在全局配置 `~/.config/opencode/opencode.json` 或项目级 `opencode.json` 中添加：
+
+```json
+{
+  "$schema": "https://opencode.ai/config.json",
+  "permission": {
+    "*": "allow",
+    "doom_loop": "ask",
+    "bash": {
+      "rm -rf /": "deny"
+    }
+  }
+}
+```
+
+- `"*": "allow"` — 全部操作自动放行（YOLO 核心）
+- `doom_loop: "ask"` — 死循环兜底拦截
+- `bash.* : "deny"` — 封禁不可逆破坏性命令
+
+#### 3. 完整配置文件
+
+参见 `configurations/opencode/` 目录下的 `yolo-mode.json` 与 `setup-yolo.sh`。
 
 ## 🔧 安装和使用
 
@@ -170,7 +213,9 @@ agentYoloDeadLoopHandler/
 │   │   ├── yolo-mode.json
 │   │   └── complete-config.json
 │   ├── opencode/
-│   │   └── README.md (待补充)
+│   │   ├── README.md
+│   │   ├── yolo-mode.json
+│   │   └── setup-yolo.sh
 │   └── codex/
 │       └── README.md (待补充)
 └── examples/
@@ -230,7 +275,7 @@ git pull
 
 ### 待补充的内容
 
-- [ ] OpenCode 配置文档
+- [x] OpenCode 配置文档
 - [ ] Codex 配置文档
 - [ ] 更多 AI 工具配置
 - [ ] 高级使用示例
