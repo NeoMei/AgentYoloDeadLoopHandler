@@ -5,6 +5,8 @@
 
 set -e
 
+VERSION="1.0.0"
+
 # 颜色定义
 RED='\033[0;31m'
 GREEN='\033[0;32m'
@@ -161,6 +163,9 @@ verify_yolo_mode() {
 
 # 主函数
 main() {
+    echo -e "${BLUE}Claude Code YOLO Mode Setup Script v${VERSION}${NC}"
+    echo ""
+
     local action="install"
     local scope="global"
 
@@ -220,7 +225,7 @@ main() {
             ;;
     esac
 
-    print_success "操作完成！"
+    print_success "操作完成！YOLO Mode v${VERSION} 已配置"
 }
 
 # 执行主函数
