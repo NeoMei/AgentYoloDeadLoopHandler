@@ -256,8 +256,8 @@ git pull
 
 ## 💬 讨论
 
-- 有问题？在 [Issues](https://github.com/NeoMei/agentYoloDeadLoopHandler/issues) 中提出
-- 想讨论？在 [Discussions](https://github.com/NeoMei/agentYoloDeadLoopHandler/discussions) 中交流
+- 有问题？在 [Issues](https://github.com/NeoMei/AgentYoloDeadLoopHandler/issues) 中提出
+- 想讨论？在 [Discussions](https://github.com/NeoMei/AgentYoloDeadLoopHandler/discussions) 中交流
 
 ---
 
