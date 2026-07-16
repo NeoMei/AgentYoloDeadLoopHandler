@@ -24,6 +24,87 @@
 ### Codex
 > ✅ 已完成 YOLO 模式和重复操作拦截配置
 
+## 🚀 快速开始
+
+### 一键安装脚本 ⚡
+
+我们提供了便捷的安装脚本，让YOLO模式设置变得超简单：
+
+```bash
+# 克隆项目
+git clone https://github.com/NeoMei/AgentYoloDeadLoopHandler.git
+cd AgentYoloDeadLoopHandler
+
+# 全局安装YOLO模式（推荐）
+./setup-yolo-mode.sh --global
+
+# 或者为当前项目安装
+./setup-yolo-mode.sh --project
+```
+
+**脚本功能：**
+- ✅ 自动备份现有配置
+- ✅ 支持全局和项目安装
+- ✅ 一键卸载功能
+- ✅ 配置验证
+
+### 手动安装
+
+如果你想手动配置：
+
+**全局配置：**
+```bash
+# 创建配置目录
+mkdir -p ~/.claude
+
+# 创建配置文件
+cat > ~/.claude/settings.json << 'EOF'
+{
+  "permissions": {
+    "defaultMode": "auto",
+    "allow": [
+      "Read",
+      "Write",
+      "Edit",
+      "Bash",
+      "LSP",
+      "AskUserQuestion",
+      "TaskCreate",
+      "TaskUpdate",
+      "Skill"
+    ],
+    "ask": []
+  }
+}
+EOF
+```
+
+**项目配置：**
+```bash
+# 在项目根目录创建配置
+mkdir -p .claude
+
+cat > .claude/settings.json << 'EOF'
+{
+  "permissions": {
+    "defaultMode": "auto",
+    "allow": [
+      "Read",
+      "Write",
+      "Edit",
+      "Bash",
+      "LSP",
+      "AskUserQuestion",
+      "TaskCreate",
+      "TaskUpdate",
+      "Skill"
+    ],
+    "ask": []
+  }
+}
+EOF
+```
+
 ## 📖 使用指南
 
 ### Claude Code 配置
@@ -240,7 +321,8 @@ npm test              # 运行测试
 ## 📂 项目结构
 
 ```
-agentYoloDeadLoopHandler/
+AgentYoloDeadLoopHandler/
+├── setup-yolo-mode.sh        # 一键安装脚本
 ├── README.md
 ├── LICENSE
 ├── CONTRIBUTING.md
