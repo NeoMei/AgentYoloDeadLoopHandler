@@ -1,0 +1,26 @@
+{
+  "approvalMode": "auto",
+  "permissions": {
+    "allowRead": true,
+    "allowWrite": true,
+    "allowBash": true,
+    "allowEdit": true,
+    "allowNetwork": true,
+    "allowMCP": true,
+    "allowAgent": true
+  },
+  "autoApprove": [
+    "Read",
+    "Write",
+    "Edit",
+    "Bash",
+    "LSP",
+    "AskUserQuestion",
+    "TaskCreate",
+    "TaskUpdate",
+    "Skill"
+  ],
+  "bashBehavior": "auto",
+  "networkBehavior": "auto",
+  "editBehavior": "auto"
+}

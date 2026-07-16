@@ -1,0 +1,19 @@
+{
+  "loopPrevention": {
+    "enabled": true,
+    "detectionWindow": 60,
+    "maxSameOperationCalls": 3,
+    "maxSimilarCalls": 5,
+    "cooldownPeriod": 10,
+    "blockOnPattern": [
+      "same.*operation.*3.*times",
+      "similar.*call.*5.*times"
+    ]
+  },
+  "repetitionDetection": {
+    "enabled": true,
+    "trackOperations": true,
+    "alertThreshold": 3,
+    "blockThreshold": 5
+  }
+}
