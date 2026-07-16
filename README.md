@@ -18,8 +18,8 @@
 ### Claude Code
 > ✅ 已完成配置和验证
 
-### OpenCode  
-> 🚧 配置文档待补充
+### OpenCode
+> ✅ 已完成配置和验证（含一键脚本）
 
 ### Codex
 > ✅ 已完成 YOLO 模式和重复操作拦截配置
@@ -82,11 +82,54 @@ nano ~/.claude/settings.json
 
 参见 `configurations/claude-code/` 目录下的完整配置文件。
 
+### OpenCode 配置
+
+#### 1. 一键启用（推荐）
+
+```bash
+# 启用 YOLO 模式（全局配置）
+./configurations/opencode/setup-yolo.sh
+
+# 仅在当前项目启用
+./configurations/opencode/setup-yolo.sh -p
+
+# 查看状态 / 还原
+./configurations/opencode/setup-yolo.sh --status
+./configurations/opencode/setup-yolo.sh --revert
+```
+
+脚本会自动备份原配置并合并 YOLO 权限，**不触碰任何密钥**。
+
+#### 2. 核心配置
+
+在全局配置 `~/.config/opencode/opencode.json` 或项目级 `opencode.json` 中添加：
+
+```json
+{
+  "$schema": "https://opencode.ai/config.json",
+  "permission": {
+    "*": "allow",
+    "doom_loop": "ask",
+    "bash": {
+      "rm -rf /": "deny"
+    }
+  }
+}
+```
+
+- `"*": "allow"` — 全部操作自动放行（YOLO 核心）
+- `doom_loop: "ask"` — 死循环兜底拦截
+- `bash.* : "deny"` — 封禁不可逆破坏性命令
+
+#### 3. 完整配置文件
+
+参见 `configurations/opencode/` 目录下的 `yolo-mode.json` 与 `setup-yolo.sh`。
+
 ### Codex 配置
 
 Codex 配置位于 [`configurations/codex/`](configurations/codex/)，包含 YOLO 模式和重复操作拦截。
 
-#### 一键安装
+#### 1. 一键安装
 
 ```bash
 git clone https://github.com/NeoMei/AgentYoloDeadLoopHandler.git
@@ -96,7 +139,7 @@ configurations/codex/install_yolo.sh
 
 安装完成后重启 Codex。
 
-安装内容：
+#### 2. 安装内容
 
 - 启用 `approval_policy = "never"`
 - 启用 `sandbox_mode = "danger-full-access"`
@@ -105,7 +148,7 @@ configurations/codex/install_yolo.sh
 - 同一操作 60 秒内允许 3 次，第 4 次返回 `decision = "block"`
 - 重复运行安装脚本不会重复追加配置
 
-#### 验证安装脚本
+#### 3. 验证安装脚本
 
 ```bash
 configurations/codex/test_install_yolo.sh
@@ -113,7 +156,7 @@ configurations/codex/test_install_yolo.sh
 
 该测试会使用临时 `HOME`，验证一键安装、重复安装幂等性，以及 hook 不会被重复写入。
 
-#### Codex 安全提醒
+#### 4. 安全提醒
 
 YOLO 模式会跳过人工审批并使用 `danger-full-access`。建议只在可信本地开发、容器、临时 worktree 或其他外部隔离环境中使用。不要提交真实的 `~/.codex/auth.json`、日志、状态库或包含私有路径的 `~/.codex/config.toml`。
 
@@ -207,7 +250,9 @@ agentYoloDeadLoopHandler/
 │   │   ├── yolo-mode.json
 │   │   └── complete-config.json
 │   ├── opencode/
-│   │   └── README.md (待补充)
+│   │   ├── README.md
+│   │   ├── yolo-mode.json
+│   │   └── setup-yolo.sh
 │   └── codex/
 │       ├── README.md
 │       ├── repeat_guard.rb
@@ -272,7 +317,7 @@ git pull
 
 ### 待补充的内容
 
-- [ ] OpenCode 配置文档
+- [x] OpenCode 配置文档
 - [x] Codex 配置文档
 - [ ] 更多 AI 工具配置
 - [ ] 高级使用示例
