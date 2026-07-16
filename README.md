@@ -89,7 +89,7 @@ Codex 配置位于 [`configurations/codex/`](configurations/codex/)。
 快速安装：
 
 ```bash
-ruby configurations/codex/install_repeat_guard.rb
+configurations/codex/install_yolo.sh
 ```
 
 安装内容：
@@ -193,8 +193,10 @@ agentYoloDeadLoopHandler/
 │   └── codex/
 │       ├── README.md
 │       ├── repeat_guard.rb
+│       ├── install_yolo.sh
 │       ├── install_repeat_guard.rb
-│       └── codex-config-snippet.toml
+│       ├── codex-config-snippet.toml
+│       └── test_install_yolo.sh
 └── examples/
     ├── basic-usage.md
     └── advanced-scenarios.md

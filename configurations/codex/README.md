@@ -19,15 +19,17 @@ The guard is designed for local development environments where Codex is allowed 
 | File | Purpose |
 |------|---------|
 | `repeat_guard.rb` | The hook script that detects repeated Codex tool payloads |
+| `install_yolo.sh` | One-command installer for Codex YOLO mode and the repeat guard |
 | `install_repeat_guard.rb` | Idempotent installer for `~/.codex/config.toml` |
 | `codex-config-snippet.toml` | Manual config snippet for users who prefer editing TOML themselves |
+| `test_install_yolo.sh` | Smoke test for the one-command installer |
 
 ## Quick Install
 
 From the repository root:
 
 ```bash
-ruby configurations/codex/install_repeat_guard.rb
+configurations/codex/install_yolo.sh
 ```
 
 Then restart Codex.
@@ -41,6 +43,18 @@ The installer:
 - refuses to duplicate an existing repeat guard entry
 
 If your config already has a `[hooks]` table, the installer stops and prints a manual snippet instead of trying to merge TOML automatically.
+
+The shell entrypoint is intentionally small. It checks that Ruby is available and then delegates to `install_repeat_guard.rb`.
+
+## Verify Installer
+
+Run the smoke test:
+
+```bash
+configurations/codex/test_install_yolo.sh
+```
+
+The test uses a temporary `HOME`, installs twice, and confirms the hook is not duplicated.
 
 ## Manual Config
 
